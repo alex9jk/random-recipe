@@ -73,12 +73,39 @@ function getRandomRecipe() {
             cardBody.setAttribute('class', 'card-body');
             document.getElementsByClassName('collapse')[i].append(cardBody);
 
-            let image = document.createElement('image');
+            let image = document.createElement('img');
             image.setAttribute('src', item.recipe.image);
             image.setAttribute('alt','#');
-            image.setAttribute('hieght', '50');
-            image.setAttribute('width','50');
+            // image.setAttribute('hieght', '50');
+            // image.setAttribute('width','50');
             document.getElementsByClassName('card-body')[i].append(image);
+
+            let serves = document.createElement('h4');
+            let servesText = document.createTextNode("Serves: " +item.recipe.yield);
+            serves.appendChild(servesText);
+            document.getElementsByClassName('card-body')[i].append(serves);
+
+            let totalTime = document.createElement('h4');
+            let timeText = document.createTextNode("Total time: " + item.recipe.totalTime);
+            totalTime.appendChild(timeText);
+            document.getElementsByClassName('card-body')[i].append(totalTime);
+
+            let ingrediantTitle = document.createElement('h3');
+            let titleText = document.createTextNode("Ingredients: ");
+            ingrediantTitle.appendChild(titleText);
+            document.getElementsByClassName('card-body')[i].append(ingrediantTitle);
+
+            let unorderList = document.createElement('ul');
+            document.getElementsByClassName('card-body')[i].append(unorderList);
+            item.recipe.ingredientLines.forEach(function(ingredItem){
+                let listItem = document.createElement('li');
+                let text = document.createTextNode(ingredItem);
+                listItem.appendChild(text);
+                document.getElementsByClassName('card-body')[i].append(listItem);
+            });
+            
+            
+
             i++;
 
         });
